@@ -37,7 +37,7 @@ Enthält die nachfolgenden Informationen als String in der Reihenfolge:
 
 *c.  {Anrede/ Titel} = Titel oder Anreden. Wird in neue Spalte **'Address'** ausgegliedert.*
 
-*d.  Enthält verschiedene Titel und Anreden. Titel [], Anreden []*
+*d.  Enthält verschiedene Titel und Anreden ('Mr', 'Mrs', 'Miss', 'Master', 'Don', 'Rev', 'Dr', 'Mme', 'Ms', 'Major', 'Lady', 'Sir', 'Mlle', 'Col', 'Capt', 'the Countess', 'Jonkheer').
 
 *e.  '.' = konstanter Separator nach 'Address'*
 
