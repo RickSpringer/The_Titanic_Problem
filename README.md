@@ -19,19 +19,55 @@ Um die Analyse der Indiatoren durchzuführen zu können, wird der Datensatz zun�
 ## 2. Datenerfassung & Bereinigung
 ### 2.1 Beobachtungen
 Der Datensatz umfasst *12 Spalten* und 891 Zeilen mit Informationen zu Passagieren der Titanic. Anbei eine Übersicht der Spalten und der hinterlegten Informationen:
-
 **1. 'PassengerId'** Enthält die PassagierId als Integer. Die hinterlegten Zahlen stehen für die IDs und reichen von 1 - 891.
-**2. 'Survived'** Enthält den Überlebensstatus als Integer. 0 = hat nicht überlebt. 1 = hat überlebt.
-**3. 'Pclass'** Enthält die Passagierklasse als Integer. Die Zahlen der unterschiedlichen Klassen reichen von 1 - 3.  
-**4. 'Name'** Enthält die Anreden, Nachname, Vornamen und ggf. Mädchenname.                                                                        
-**5. 'Sex'** Enthält das Geschlecht des Passagiers als String. Entweder 'female' für weiblich oder 'male' für männlich.
-**6. 'Age'** Enthält das Alter des Passagiers in Jahren als Float. Das kleinste Alter liegt bei 0.42 das größte bei 80.0.
-**7. 'SibSp'** Enthält die Anzahl der Geschwister und/oder der Ehepartner als Integer.
-**8. 'Parch'** Enthält die Anzahl der Elternteile und/oder der Kinder als Integer. Die Werte reichen von 0 - 3.
-**9. 'Ticket'** Enthält Ticketnamen als String.
-**10. 'Fare'** Enthält den Ticketpreis als Float mit 4 Nachkommastellen. Die Währung ist nicht angegeben.
-**11. 'Cabin'** Enthält den Namen der Kabine des Passagiers als String. Setzt sich zusammen aus Buchstaben und Zahlenfolge.
-**12 'Embarked'** Enthält den Ort, an dem der Passagier zugestiegen ist als String. S = Southampton (England), C = Cherbourg (Frankreich), Q = Queenstown (Irland).
+
+**2. 'Survived'**
+Enthält den Überlebensstatus als Integer. 0 = hat nicht überlebt. 1 = hat überlebt.
+ 
+**3. 'Pclass'**
+Enthält die Passagierklasse als Integer. Die Zahlen der unterschiedlichen Klassen reichen von 1 - 3.
+Frage: Wo genau lagen die Kabinen der Klassen auf dem Schiff? Sind sie etwa Etagen zugeordnet? Wie ist der Zusammenhang zwischen Pclass und Parch?
+  
+**4. 'Name'**
+Enthält die nachfolgenden Informationen als String in der Reihenfolge:
+
+*a. {Nachname} = Nachnamen. Wird in neue Spalte **'Surname'** ausgegliedert. Die Nachnamen werden in eine eigene Spalte {Surname} extrahiert, um später einfacher an Anreden/ Titel zu gelangen. Die Nachname  liegen als einfache Strings vor, z.B. 'Braund', 'Cumings' ...*
+
+*b.  ',' = konstanter Separator nach 'Surname'*
+
+*c.  {Anrede/ Titel} = Titel oder Anreden. Wird in neue Spalte **'Address'** ausgegliedert.*
+
+*d.  Enthält verschiedene Titel und Anreden. Titel [], Anreden []*
+
+*e.  '.' = konstanter Separator nach 'Address'*
+
+*f.  {Vornamen} = ein oder mehrere Vornamen. Wird in neue Spalte **'First Name'** ausgegliedert. Die einzelnen Vornamen sind durch ' ' getrennt. Wenn 'Address' nicht 'Miss' ist, werden zuerst die Vornamen des Ehemanns angegeben.*
+
+*g.  {Mädchenname} = Mädchenname. Wird in neue Spalte **'Maiden Name'** ausgegliedert. Wenn Titel/Anrede 'Mrs' ist, wird am Ende der Mädchenname in Klammern angegeben, z.B. (Florence Briggs Thayer). Spitznamen sind teilweise in Anführungszeichen angegeben, z.B. "Frankie"*
+                                                                        
+**5. 'Sex'**
+Enthält das Geschlecht des Passagiers als String. Entweder 'female' für weiblich oder 'male' für männlich.
+
+**6. 'Age'**
+Enthält das Alter des Passagiers in Jahren als Float. Die Altersangaben, bsp. von Kindern unter einem Jahr, deuten darauf, dass bei der Datengenerierungen Berechnungen abgelaufen sind, die Floats mit bis zu zwei Nachkommastellen produziert habem. Wie diese Berechnung ablief, ist nicht zu rekonstruieren.
+
+**7. 'SibSp'**
+Enthält die Anzahl der Geschwister und/oder der Ehepartner als Integer.
+
+**8. 'Parch'**
+Enthält die Anzahl der Elternteile und/oder der Kinder als Integer. Die Werte reichen von 0 - 3.
+
+**9. 'Ticket'**
+Enthält Ticketnamen als String. Diese Bezeichnungen setzten sich entweder nur aus Zahlen, aus einer Buchstabenfolge und Zahlen oder einer Kombination aus Sonderzeichen, Buchstaben und Zahlen.
+
+**10. 'Fare'**
+Enthält den Ticketpreis als Float mit 4 Nachkommastellen. Die Währung ist nicht angegeben.
+
+**11. 'Cabin'**
+Enthält den Namen der Kabine des Passagiers als String. Setzt sich zusammen aus Buchstaben und Zahlenfolge, bsp. 'C85', 'E46'. Insgesamt gibt es 8 verschiedene Kabinentypen. Die Bezeichnung folgt ihren Deckpositionen. So waren die A-Kabinen auf dem obersten Deck und die G-Kabinen auf dem untersten.
+
+**12 'Embarked'**
+Enthält den Ort, an dem der Passagier zugestiegen ist als String. S = Southampton (England), C = Cherbourg (Frankreich), Q = Queenstown (Irland).
 
 # 3. Datenbereinigung
 Im Ramen der Datenbereinigung wurden alle Daten innerhalb des Datensatzes so formatiert, dass sie anschließend für Berechnungen und Aggregation genutzt werden können. Im Folgenden werden die einzelnen Arbeitsschritte kurz kommentiert.
@@ -98,5 +134,11 @@ Mithilfe der "SibSp"-Spalte wurden die Überlebensraten von Passagieren mit Gesc
 Zuletzt wird der Einfluss der Familiengröße auf die Überlebensrate mithilfe von groupby() aggregiert. Dabei zeigt der Mittelwert (mean) die Überlebensrate, die Anzahl (count) die Gesamtzahl der Passagiere mit der jeweiligen Anzahl an Angehörigen und die Summe (sum) die absolute Anzahl der Überlebenden der jeweiligen Gruppe. Hier zeigt sich, dass anscheinend Personen mit 3 mitreisenden Familienmitglieder die höchste Überlebenschance hatten im Vergleich zu Passagieren, die allein, zu zweit oder mit mehr als drei Angehörigen gereist sind. 
 
 # Diagramm!!!
+
+# 5. Korrelation und Überlebenswahrscheinlichkeit
+## 5.1 Korrelationsmatrix
+Um die wichtigsten Faktoren und ihren Einfluss auf die Überlebenswahrscheinlichkeit der Passagiere hervorzuheben, wurde mithilfe der Korrelationsfunktion corr() und mit dem Seaborn-Modul eine Korrelationsmatrix erstellt und eine Heatmap-Ansicht generiert. Die positiv-korrelierenden Faktoren sind rot bis braun, die negativ-korrelierenden Faktoren lila bis schwarz. Hier fällt auf, dass mit Abstand das Geschlecht, gefolgt von der Passagierklasse und dem Ticketpreis mit derÜberlebswahrscheinlichkeit korrelieren.
+
+# Diagramm!!
 
 
