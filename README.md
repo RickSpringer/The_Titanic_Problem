@@ -23,7 +23,7 @@ Der Datensatz umfasst *12 Spalten* und 891 Zeilen mit Informationen zu Passagier
 **1. 'PassengerId'** Enthält die PassagierId als Integer. Die hinterlegten Zahlen stehen für die IDs und reichen von 1 - 891.
 **2. 'Survived'** Enthält den Überlebensstatus als Integer. 0 = hat nicht überlebt. 1 = hat überlebt.
 **3. 'Pclass'** Enthält die Passagierklasse als Integer. Die Zahlen der unterschiedlichen Klassen reichen von 1 - 3.  
-**4. 'Name'** Enthält die Anrede, Nachname, Vornamen und ggf. Mädchenname.                                                                        
+**4. 'Name'** Enthält die Anreden, Nachname, Vornamen und ggf. Mädchenname.                                                                        
 **5. 'Sex'** Enthält das Geschlecht des Passagiers als String. Entweder 'female' für weiblich oder 'male' für männlich.
 **6. 'Age'** Enthält das Alter des Passagiers in Jahren als Float. Das kleinste Alter liegt bei 0.42 das größte bei 80.0.
 **7. 'SibSp'** Enthält die Anzahl der Geschwister und/oder der Ehepartner als Integer.
@@ -36,7 +36,7 @@ Der Datensatz umfasst *12 Spalten* und 891 Zeilen mit Informationen zu Passagier
 # 3. Datenbereinigung
 Im Ramen der Datenbereinigung wurden alle Daten innerhalb des Datensatzes so formatiert, dass sie anschließend für Berechnungen und Aggregation genutzt werden können. Im Folgenden werden die einzelnen Arbeitsschritte kurz kommentiert.
 
-## 3.1 Die Spalte 'Name'
+## 3.1 Formatierung der Namensspalte 'Name'
 ### 3.1.1
 In einem ersten Schritt wurde die Spalte "Name", die im Ursprungsdatensatz die Informationen zur Anrede, Nachname, Vornamen und Mädchenname enthalten hat, in 4 einzelne Spalten aufgeteilt. Hier hat sich herausgestellt, dass bei Eintrag 759 (PassengerId 760) durch den Adelstitel ein Problem für die weitere Analyse entstand, weshalb der Name geringfügig abgeändert werden musste.
 ### 3.1.2
@@ -45,6 +45,58 @@ Mithilfe von split() werden die Nachnamen vom Rest der Namesspalte abgetrennt un
 Anschließend wurde die Anreden/ Titel ebenfalls mit split() von den restlichen Namen abgetrennt. Die Anreden wurden folglich zusammen in der Spalte "Address" und die Vornamen in der Spalte "First Name" geführt.
 ### 3.1.4
 Zuletzt wurde mit extract() der Mädchenname aus der Namensspalte extrahiert und in eine neie Spalte "Maiden Name" ausgegliedert.
+## 3.2 Ergänzung der Spalte "Fam"
+Um den Einfluss von mitreisenden Familienmitgliedern insgesamt bewerten zu können, wurden die Personen aus der Spalte "SibSp" und "Parch" zusammen in der Spalte "Fam" zusammengefasst und mit 1 addiert. Die Zahl 1 steht hier für den jeweiligen Passagier.
+## 3.3 Aufteilung der Kabinen nach Decks
+Ausgehend davon, dass sich die Kabinennamen aus einem Buchstaben, der auf das jeweilige Deck schließen lässt, und einer Zahlenfolge zusammmensetzen, wurden die Buchstaben in eine Extraspalte "Cabin_Loc" extrahiert. Da hier nur insgesamt 204 von 891 möglichen Angaben vorhanden waren, wurden die Nullwerte durch ein "N" ersetzt, um sie trotzdem in eine anschließende Analyse mitaufzunehmen.
+# Bild Deckaufteilung Titanic!!!
 
+# 4 Datenanalyse
+Um den Umfang der Datenanalyse innerhalb der Projektzeit auf ein zu bewältigendes Maß zu begrenzen, wurden folgende Aspekte tiefergehend betrachtet und Diagramme zur Veranschaulichung erstellt:
+1. Allgemeine Überlebensrate
+2. Überlebensrate nach Passagierklasse und Kabine
+3. Überlebensrate nach geschlecht
+4. Überlebensrate nach Alter
+5. Überlebensrate von Passagieren mit Angehörigen
+
+## 4.1 Allgemeine Überlebensrate
+Die Überlebesrate alle Passagiere des Datensatzes gibt einen ersten Eindruck von dem Verhältnis zwischen überlebeneden und verstorbenen Passagieren. Sie wird anhand der "Survived"-Spalte mit der mean() Funktion berechnet und auf zwei Nachkommastellen aufgerundet. Um das Zahlenmäßige Verhältnis zu illustrieren, wurde ein einfaches Diagramm der Anzahl von Überlebenden und Verstorbenen mithilfe der plot-Methode erstellt.
+
+# Diagramm!!!
+
+## 4.2 Überlebensrate nach Passagierklasse und Kabine
+### 4.2.1 Überlebensrate nach Passagierklasse ("Pclass")
+Es wurden die Passagierklassen und Kabinen auf ihren Einfluss auf die Überlebensrate hin überprüft. Zuerst wurde eine Übersicht der Passagierklassenverteilung erstellt und anschließend mit der Spalte "Survived" ins Verhältnis gesetzt. Die Überlebensrate nach Klasse wurde anteilig als Tortendiagramm visualisiert. Zur Formatierung der Darstellung wurden neben der plot-Methode auch Subplots aus dem Matplotlib-Modul genutzt. Anschließend wurde die Überlebensrate absolut als Dezimalzahl für alle drei Klassen ausgedruckt.
+
+### 4.2.1 Überlebensrate nach Kabine ("Cabin_Loc")
+Die auf die Decks deutenden Buchstaben der Kabinennamen ("Cabin") wurden nun mit der "Survived"-Spalte abgeglichen und es wurden Anzahlen und Mittelwerte gebildet. Durch die unzureichenden Kabinenangaben, lassen sich keine fundierten Aussagen zum Einfluss der Kabinenposition auf den jeweiligen Decks auf die Überlebenswahrscheinlichkeit treffen. Es fällt aber auf, dass insbeondere die durch "N" ersetzten fehlenden Werte eine besonders niedrige Überlebenswahrscheinlichkeit hatten.  
+
+## 4.3 Überlebensrate nach Geschlecht
+Mit der groupby-Funktion wurden die beiden Geschlechter aus der Spalte "Sex" und die Überlebensangaben aus der Spalte "Survived" verglichen. Das daraus resultierende Tortendiagramm zeigt, dass etwa 75% aller Frauen das Unglück überlebt haben. Dagegen waren es bei den Männern nur knapp 20 %. Die Korrelation zwischen dem Geschlecht und der Überlebenswahrscheinlichkeit ist damit deutlich positiv.
+
+## 4.4 Überlebensrate nach Alter
+### 4.4.1 Altersverteilung der Passagiere
+Zunächst wurde die allgemeine Altersverteilung der Passagiere mithilfe der plot-Funktion für die Spalte "Age" ermittelt und als Histogramm (bins=20) ausgegeben.
+
+### 4.4.2 Altersverteilung der Passagiere
+Um eine genauere Betrachtung der absoluten Werte zu ermöglichen, wurden Bins mit einer festgelegten Größe von 10 Jahren definiert und mithilfe von pd.cut() eine neue Spalte "AgeBins" generiert. Die Überlebensrate und die Anzahl der Überlebenden wurde anschließend für die definierten Gruppen aggregiert und ausgdruckt. Ein gestapeltes Histogramm mit den erstellten Altersgruppen zeigt das Verhältnis von Verstorbenen zu Überlebenden an.
+
+## 4.5 Überlebensrate von Passagieren mit Angehörigen
+Im Rahmen der Betrachtung zur Überlebenswahrscheinlichkeit wurden ebenfalls der Ehestand, die Anzahl der Geschwister und/ oder Ehepartner und schließlich die Anzahl der mitgereisten Familienmitglieder miteinbezogen.
+
+### 4.5.1 verheiratete und unverheiratete Frauen
+Mithilfe der extrahierten Anreden aus der neuen Spalte "Address" wurden die Überlebensrate von verheirateten mit den unverheirateten Frauen abgeglichen.
+
+# Diagramm!!!
+
+### 4.5.2 Überlebensrate von Passagieren mit Geschwistern/Ehepartnern an Bord
+Mithilfe der "SibSp"-Spalte wurden die Überlebensraten von Passagieren mit Geschwistern und/ oder Ehepartnern abgeglichen. Anschließend wird in einem Tortendiagramm illustriert, wie hoch die Überlebesrate anteilig ist für Passagiere mit keinem, ein, zwei, drei oder vier Geschwistern und/ oder Ehepartnern. Zusätzlich wird dies noch als Balkendiagramm dargestellt, um den Effekt von jedem weiteren zusätzlichen Geschwisterteil/ Ehepartner aufzuzeigen.
+
+# Diagramm!!!
+
+### 4.5.3 Überlebensrate von Passagieren mit Familienangehörigen an Bord
+Zuletzt wird der Einfluss der Familiengröße auf die Überlebensrate mithilfe von groupby() aggregiert. Dabei zeigt der Mittelwert (mean) die Überlebensrate, die Anzahl (count) die Gesamtzahl der Passagiere mit der jeweiligen Anzahl an Angehörigen und die Summe (sum) die absolute Anzahl der Überlebenden der jeweiligen Gruppe. Hier zeigt sich, dass anscheinend Personen mit 3 mitreisenden Familienmitglieder die höchste Überlebenschance hatten im Vergleich zu Passagieren, die allein, zu zweit oder mit mehr als drei Angehörigen gereist sind. 
+
+# Diagramm!!!
 
 
