@@ -10,8 +10,10 @@ Als erstes wurden kurze Reports erstellt, um die Eigenschaften der Daten kennenz
 ### 1.2 Module, Methoden & Bedingungen
 Zur Ausführung des Projekt-Notebooks werden folgende Module in Python benötigt:
 - Jupyter 1.0
-- Matplotlib 3.8.2
+- Numpy
 - Pandas 2.2.0
+- Matplotlib 3.8.2
+
 
 Um die Analyse der Indiatoren durchzuführen zu können, wird der Datensatz zunächst so formatiert, dass Informationen schneller gefiltert werden können und ihr Einfluss gemessen werden kann. Die Datenbereinigung und die konkreten Schritte werden unter Punkt 2.2 "Datenbereinigung" aufgeführt. Nach der Bereinigung werden einzelne Informationen mit der Spalte "Survived" ins Verhältnis gesetzt und aggregiert, wie viele Passagiere mit dem jeweiligen Merkmal absolut und anteilig überlebt haben.
 
