@@ -92,7 +92,8 @@ Um den Einfluss von mitreisenden Familienmitgliedern insgesamt bewerten zu könn
 
 ## 3.3 Aufteilung der Kabinen nach Decks
 Ausgehend davon, dass sich die Kabinennamen aus einem Buchstaben, der auf das jeweilige Deck schließen lässt, und einer Zahlenfolge zusammmensetzen, wurden die Buchstaben in eine Extraspalte "Cabin_Loc" extrahiert. Da hier nur insgesamt 204 von 891 möglichen Angaben vorhanden waren, wurden die Nullwerte durch ein "N" ersetzt, um sie trotzdem in eine anschließende Analyse mitaufzunehmen.
-# Bild Deckaufteilung Titanic!!!
+
+![Olympic_ _Titanic_cutaway_diagram](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/f185d0b6-66bc-4c46-b9d5-685f83af4c61)
 
 # 4. Datenanalyse
 Um den Umfang der Datenanalyse innerhalb der Projektzeit auf ein zu bewältigendes Maß zu begrenzen, wurden folgende Aspekte tiefergehend betrachtet und Diagramme zur Veranschaulichung erstellt:
@@ -114,8 +115,6 @@ Es wurden die Passagierklassen und Kabinen auf ihren Einfluss auf die Überleben
 
 ### 4.2.1 Überlebensrate nach Kabine ("Cabin_Loc")
 Die auf die Decks deutenden Buchstaben der Kabinennamen ("Cabin") wurden nun mit der "Survived"-Spalte abgeglichen und es wurden Anzahlen und Mittelwerte gebildet. Durch die unzureichenden Kabinenangaben, lassen sich keine fundierten Aussagen zum Einfluss der Kabinenposition auf den jeweiligen Decks auf die Überlebenswahrscheinlichkeit treffen. Es fällt aber auf, dass insbeondere die durch "N" ersetzten fehlenden Werte eine besonders niedrige Überlebenswahrscheinlichkeit hatten.  
-
-![Olympic_ _Titanic_cutaway_diagram](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/f185d0b6-66bc-4c46-b9d5-685f83af4c61)
 
 ## 4.3 Überlebensrate nach Geschlecht
 Mit der groupby-Funktion wurden die beiden Geschlechter aus der Spalte "Sex" und die Überlebensangaben aus der Spalte "Survived" verglichen. Das daraus resultierende Tortendiagramm zeigt, dass etwa 75% aller Frauen das Unglück überlebt haben. Dagegen waren es bei den Männern nur knapp 20 %. Die Korrelation zwischen dem Geschlecht und der Überlebenswahrscheinlichkeit ist damit deutlich positiv.
