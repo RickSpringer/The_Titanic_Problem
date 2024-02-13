@@ -91,7 +91,7 @@ Um den Einfluss von mitreisenden Familienmitgliedern insgesamt bewerten zu könn
 Ausgehend davon, dass sich die Kabinennamen aus einem Buchstaben, der auf das jeweilige Deck schließen lässt, und einer Zahlenfolge zusammmensetzen, wurden die Buchstaben in eine Extraspalte "Cabin_Loc" extrahiert. Da hier nur insgesamt 204 von 891 möglichen Angaben vorhanden waren, wurden die Nullwerte durch ein "N" ersetzt, um sie trotzdem in eine anschließende Analyse mitaufzunehmen.
 # Bild Deckaufteilung Titanic!!!
 
-# 4 Datenanalyse
+# 4. Datenanalyse
 Um den Umfang der Datenanalyse innerhalb der Projektzeit auf ein zu bewältigendes Maß zu begrenzen, wurden folgende Aspekte tiefergehend betrachtet und Diagramme zur Veranschaulichung erstellt:
 1. Allgemeine Überlebensrate
 2. Überlebensrate nach Passagierklasse und Kabine
