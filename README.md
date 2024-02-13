@@ -1,4 +1,7 @@
-# The_Titanic_Problem
+# The Titanic Problem
+
+![titanic-6972725_1280](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/51346b4c-e799-46ab-a1d2-5a10f7627ace)
+© David_Do
 
 ## 1. Einleitung
 
@@ -89,7 +92,8 @@ Um den Einfluss von mitreisenden Familienmitgliedern insgesamt bewerten zu könn
 
 ## 3.3 Aufteilung der Kabinen nach Decks
 Ausgehend davon, dass sich die Kabinennamen aus einem Buchstaben, der auf das jeweilige Deck schließen lässt, und einer Zahlenfolge zusammmensetzen, wurden die Buchstaben in eine Extraspalte "Cabin_Loc" extrahiert. Da hier nur insgesamt 204 von 891 möglichen Angaben vorhanden waren, wurden die Nullwerte durch ein "N" ersetzt, um sie trotzdem in eine anschließende Analyse mitaufzunehmen.
-# Bild Deckaufteilung Titanic!!!
+
+![Olympic_ _Titanic_cutaway_diagram](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/f185d0b6-66bc-4c46-b9d5-685f83af4c61)
 
 # 4. Datenanalyse
 Um den Umfang der Datenanalyse innerhalb der Projektzeit auf ein zu bewältigendes Maß zu begrenzen, wurden folgende Aspekte tiefergehend betrachtet und Diagramme zur Veranschaulichung erstellt:
@@ -105,6 +109,9 @@ Die Überlebesrate alle Passagiere des Datensatzes gibt einen ersten Eindruck vo
 ## 4.2 Überlebensrate nach Passagierklasse und Kabine
 ### 4.2.1 Überlebensrate nach Passagierklasse ("Pclass")
 Es wurden die Passagierklassen und Kabinen auf ihren Einfluss auf die Überlebensrate hin überprüft. Zuerst wurde eine Übersicht der Passagierklassenverteilung erstellt und anschließend mit der Spalte "Survived" ins Verhältnis gesetzt. Die Überlebensrate nach Klasse wurde anteilig als Tortendiagramm visualisiert. Zur Formatierung der Darstellung wurden neben der plot-Methode auch Subplots aus dem Matplotlib-Modul genutzt. Anschließend wurde die Überlebensrate absolut als Dezimalzahl für alle drei Klassen ausgedruckt.
+
+![titanic-deck-plan](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/6906f4a1-22e2-4131-b583-10c5abd27e42)
+© National Museums Liverpool
 
 ### 4.2.1 Überlebensrate nach Kabine ("Cabin_Loc")
 Die auf die Decks deutenden Buchstaben der Kabinennamen ("Cabin") wurden nun mit der "Survived"-Spalte abgeglichen und es wurden Anzahlen und Mittelwerte gebildet. Durch die unzureichenden Kabinenangaben, lassen sich keine fundierten Aussagen zum Einfluss der Kabinenposition auf den jeweiligen Decks auf die Überlebenswahrscheinlichkeit treffen. Es fällt aber auf, dass insbeondere die durch "N" ersetzten fehlenden Werte eine besonders niedrige Überlebenswahrscheinlichkeit hatten.  
