@@ -10,7 +10,6 @@ Als erstes wurden kurze Reports erstellt, um die Eigenschaften der Daten kennenz
 ### 1.2 Module, Methoden & Bedingungen
 Zur Ausführung des Projekt-Notebooks werden folgende Module in Python benötigt:
 - Jupyter 1.0
-- Numpy 1.26.4
 - Pandas 2.2.0
 - Matplotlib 3.8.2
 
