@@ -1,6 +1,7 @@
 # The Titanic Problem
 
 ![titanic-6972725_1280](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/51346b4c-e799-46ab-a1d2-5a10f7627ace)
+© David_Do
 
 ## 1. Einleitung
 
