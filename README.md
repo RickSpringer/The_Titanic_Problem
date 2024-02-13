@@ -109,6 +109,7 @@ Die Überlebesrate alle Passagiere des Datensatzes gibt einen ersten Eindruck vo
 Es wurden die Passagierklassen und Kabinen auf ihren Einfluss auf die Überlebensrate hin überprüft. Zuerst wurde eine Übersicht der Passagierklassenverteilung erstellt und anschließend mit der Spalte "Survived" ins Verhältnis gesetzt. Die Überlebensrate nach Klasse wurde anteilig als Tortendiagramm visualisiert. Zur Formatierung der Darstellung wurden neben der plot-Methode auch Subplots aus dem Matplotlib-Modul genutzt. Anschließend wurde die Überlebensrate absolut als Dezimalzahl für alle drei Klassen ausgedruckt.
 
 ![titanic-deck-plan](https://github.com/RickSpringer/The_Titanic_Problem/assets/155556605/6906f4a1-22e2-4131-b583-10c5abd27e42)
+© National Museums Liverpool
 
 ### 4.2.1 Überlebensrate nach Kabine ("Cabin_Loc")
 Die auf die Decks deutenden Buchstaben der Kabinennamen ("Cabin") wurden nun mit der "Survived"-Spalte abgeglichen und es wurden Anzahlen und Mittelwerte gebildet. Durch die unzureichenden Kabinenangaben, lassen sich keine fundierten Aussagen zum Einfluss der Kabinenposition auf den jeweiligen Decks auf die Überlebenswahrscheinlichkeit treffen. Es fällt aber auf, dass insbeondere die durch "N" ersetzten fehlenden Werte eine besonders niedrige Überlebenswahrscheinlichkeit hatten.  
