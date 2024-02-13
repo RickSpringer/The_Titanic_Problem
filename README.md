@@ -10,7 +10,6 @@ Als erstes wurden kurze Reports erstellt, um die Eigenschaften der Daten kennenz
 ### 1.2 Module, Methoden & Bedingungen
 Zur Ausführung des Projekt-Notebooks werden folgende Module in Python benötigt:
 - Jupyter 1.0
-- Numpy 1.26.4
 - Pandas 2.2.0
 - Matplotlib 3.8.2
 
@@ -75,19 +74,24 @@ Im Ramen der Datenbereinigung wurden alle Daten innerhalb des Datensatzes so for
 ## 3.1 Formatierung der Namensspalte 'Name'
 ### 3.1.1
 In einem ersten Schritt wurde die Spalte "Name", die im Ursprungsdatensatz die Informationen zur Anrede, Nachname, Vornamen und Mädchenname enthalten hat, in 4 einzelne Spalten aufgeteilt. Hier hat sich herausgestellt, dass bei Eintrag 759 (PassengerId 760) durch den Adelstitel ein Problem für die weitere Analyse entstand, weshalb der Name geringfügig abgeändert werden musste.
+
 ### 3.1.2
 Mithilfe von split() werden die Nachnamen vom Rest der Namesspalte abgetrennt und in eine eigene Spalte "Surname" ausgegliedert.
+
 ### 3.1.3
 Anschließend wurde die Anreden/ Titel ebenfalls mit split() von den restlichen Namen abgetrennt. Die Anreden wurden folglich zusammen in der Spalte "Address" und die Vornamen in der Spalte "First Name" geführt.
+
 ### 3.1.4
 Zuletzt wurde mit extract() der Mädchenname aus der Namensspalte extrahiert und in eine neie Spalte "Maiden Name" ausgegliedert.
+
 ## 3.2 Ergänzung der Spalte "Fam"
 Um den Einfluss von mitreisenden Familienmitgliedern insgesamt bewerten zu können, wurden die Personen aus der Spalte "SibSp" und "Parch" zusammen in der Spalte "Fam" zusammengefasst und mit 1 addiert. Die Zahl 1 steht hier für den jeweiligen Passagier.
+
 ## 3.3 Aufteilung der Kabinen nach Decks
 Ausgehend davon, dass sich die Kabinennamen aus einem Buchstaben, der auf das jeweilige Deck schließen lässt, und einer Zahlenfolge zusammmensetzen, wurden die Buchstaben in eine Extraspalte "Cabin_Loc" extrahiert. Da hier nur insgesamt 204 von 891 möglichen Angaben vorhanden waren, wurden die Nullwerte durch ein "N" ersetzt, um sie trotzdem in eine anschließende Analyse mitaufzunehmen.
 # Bild Deckaufteilung Titanic!!!
 
-# 4 Datenanalyse
+# 4. Datenanalyse
 Um den Umfang der Datenanalyse innerhalb der Projektzeit auf ein zu bewältigendes Maß zu begrenzen, wurden folgende Aspekte tiefergehend betrachtet und Diagramme zur Veranschaulichung erstellt:
 1. Allgemeine Überlebensrate
 2. Überlebensrate nach Passagierklasse und Kabine
@@ -97,8 +101,6 @@ Um den Umfang der Datenanalyse innerhalb der Projektzeit auf ein zu bewältigend
 
 ## 4.1 Allgemeine Überlebensrate
 Die Überlebesrate alle Passagiere des Datensatzes gibt einen ersten Eindruck von dem Verhältnis zwischen überlebeneden und verstorbenen Passagieren. Sie wird anhand der "Survived"-Spalte mit der mean() Funktion berechnet und auf zwei Nachkommastellen aufgerundet. Um das Zahlenmäßige Verhältnis zu illustrieren, wurde ein einfaches Diagramm der Anzahl von Überlebenden und Verstorbenen mithilfe der plot-Methode erstellt.
-
-# Diagramm!!!
 
 ## 4.2 Überlebensrate nach Passagierklasse und Kabine
 ### 4.2.1 Überlebensrate nach Passagierklasse ("Pclass")
@@ -123,22 +125,12 @@ Im Rahmen der Betrachtung zur Überlebenswahrscheinlichkeit wurden ebenfalls der
 ### 4.5.1 verheiratete und unverheiratete Frauen
 Mithilfe der extrahierten Anreden aus der neuen Spalte "Address" wurden die Überlebensrate von verheirateten mit den unverheirateten Frauen abgeglichen.
 
-# Diagramm!!!
-
 ### 4.5.2 Überlebensrate von Passagieren mit Geschwistern/Ehepartnern an Bord
 Mithilfe der "SibSp"-Spalte wurden die Überlebensraten von Passagieren mit Geschwistern und/ oder Ehepartnern abgeglichen. Anschließend wird in einem Tortendiagramm illustriert, wie hoch die Überlebesrate anteilig ist für Passagiere mit keinem, ein, zwei, drei oder vier Geschwistern und/ oder Ehepartnern. Zusätzlich wird dies noch als Balkendiagramm dargestellt, um den Effekt von jedem weiteren zusätzlichen Geschwisterteil/ Ehepartner aufzuzeigen.
-
-# Diagramm!!!
 
 ### 4.5.3 Überlebensrate von Passagieren mit Familienangehörigen an Bord
 Zuletzt wird der Einfluss der Familiengröße auf die Überlebensrate mithilfe von groupby() aggregiert. Dabei zeigt der Mittelwert (mean) die Überlebensrate, die Anzahl (count) die Gesamtzahl der Passagiere mit der jeweiligen Anzahl an Angehörigen und die Summe (sum) die absolute Anzahl der Überlebenden der jeweiligen Gruppe. Hier zeigt sich, dass anscheinend Personen mit 3 mitreisenden Familienmitglieder die höchste Überlebenschance hatten im Vergleich zu Passagieren, die allein, zu zweit oder mit mehr als drei Angehörigen gereist sind. 
 
-# Diagramm!!!
-
 # 5. Korrelation und Überlebenswahrscheinlichkeit
 ## 5.1 Korrelationsmatrix
 Um die wichtigsten Faktoren und ihren Einfluss auf die Überlebenswahrscheinlichkeit der Passagiere hervorzuheben, wurde mithilfe der Korrelationsfunktion corr() und mit dem Seaborn-Modul eine Korrelationsmatrix erstellt und eine Heatmap-Ansicht generiert. Die positiv-korrelierenden Faktoren sind rot bis braun, die negativ-korrelierenden Faktoren lila bis schwarz. Hier fällt auf, dass mit Abstand das Geschlecht, gefolgt von der Passagierklasse und dem Ticketpreis mit derÜberlebswahrscheinlichkeit korrelieren.
-
-# Diagramm!!
-
-
